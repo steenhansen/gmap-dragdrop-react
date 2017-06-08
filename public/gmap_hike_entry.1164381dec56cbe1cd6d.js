@@ -23,33 +23,34 @@ var BURKE_MOUNTAIN_HIKE = hikes_data.BURKE_MOUNTAIN_HIKE,
 
 function drawLineShape(from_location, to_locations) {
   var line_pattern = [];
-  line_pattern.push(from_location);
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  if (from_location.lat !== undefined) {
+    line_pattern.push(from_location);
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-  try {
-    for (var _iterator = to_locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var a_to_location = _step.value;
-
-      var order_index = a_to_location.order_index;
-      line_pattern[order_index] = a_to_location;
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
+      for (var _iterator = to_locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var a_to_location = _step.value;
+
+        var order_index = a_to_location.order_index;
+        line_pattern[order_index] = a_to_location;
       }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
     } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
       }
     }
   }
-
   return line_pattern;
 }
 

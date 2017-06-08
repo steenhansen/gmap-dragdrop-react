@@ -33,3 +33,10 @@
     clear: both;
     margin-right: 4px;
 }
+
+.activity-commands {
+
+  float:left; 
+  margin-left: 4px;
+  clear:both;
+}

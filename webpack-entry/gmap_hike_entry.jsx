@@ -12,10 +12,12 @@ const {BURKE_MOUNTAIN_HIKE, SWAN_HIKE, ALOUETTE_HIKE, BASTION_HIKE}=hikes_data
 
 function drawLineShape(from_location, to_locations) {
   let line_pattern = []
-  line_pattern.push(from_location)
-  for (let a_to_location of to_locations) {
-    let order_index = a_to_location.order_index
-    line_pattern[order_index] = a_to_location
+  if (from_location.lat !== undefined) {
+    line_pattern.push(from_location)
+    for (let a_to_location of to_locations) {
+      let order_index = a_to_location.order_index
+      line_pattern[order_index] = a_to_location
+    }
   }
   return line_pattern
 }

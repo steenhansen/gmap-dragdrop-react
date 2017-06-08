@@ -56,14 +56,6 @@
 
 
 
-        aaaaaaaaaaaa
-
-
-s
-
-
-
-        ccc
     </div>
      
     <div class="grid-cell" style="align-items:left; width:200px">
@@ -78,7 +70,7 @@ s
 <br>
 
         <div id="delete_container" ondragover="event.preventDefault()"
-             ondrop="outing_map.dropOnActivityDelete(event)"   style="float:left; clear:both; cursor:not-allowed;">
+             ondrop="outing_map.dropOnActivityDelete(event)"   style=" cursor:not-allowed;"  class="activity-commands">
 
             <div style="float: left;">
                 <div id="outing_delete" style="float: left;"></div>
@@ -87,10 +79,10 @@ s
 
         </div>
 
-<br>
+<br><br>
 
 
-        <div onClick="outing_map.clearOutings(event)"   style="float:left; clear:both">
+        <div onClick="outing_map.clearOutings(event)"   class="activity-commands">
             <div style="float: left;">
                 <div id="icon_all_activities" style="float: left;"></div>
                 <div style="margin-top: 15px;"> Clear All <span id='number-activities'>0</span></div>
@@ -102,25 +94,25 @@ s
 
 
 <br><br>
-        <br><br>
-        <div onClick="outing_map.reSizeOutings(event) "  style="float:left; clear:both;">
-            <div style="float: right;margin-top: 15px;"> Resize Map</div>
-            <div id="icon_resize_activities" style="float: right;"></div>
+      
+        <div onClick="outing_map.reSizeOutings(event) "  class="activity-commands">
+            <div id="icon_resize_activities" style="float: left;"></div>
+            <div style="float: left;margin-top: 15px;"> Resize Map</div>
+        </div>
+
+  <br><br>
+
+
+        <div onClick="outing_map.hideOutingInfo(event)"    class="activity-commands">
+            <div id="icon_hide_activities" style="float: left;"></div>
+            <div style="float: left;margin-top: 15px;">  Hide Info</div>
         </div>
 
 
-
-
-        <div onClick="outing_map.hideOutingInfo(event)"   style="float:left; clear:both;">
-            <div style="float: right;margin-top: 15px;">  Hide Info n</div>
-            <div id="icon_hide_activities" style="float: right;"></div>
-        </div>
-
-
         <br><br>
-        <div onClick="outing_map.showOutingInfo(event)"   style="float:left; clear:both;">
-            <div style="float: right;margin-top: 15px;">  Show Info n</div>
-            <div id="icon_show_activities" style="float: right;"></div>
+        <div onClick="outing_map.showOutingInfo(event)"    class="activity-commands">
+            <div id="icon_show_activities" style="float: left;"></div>
+            <div style="float: left;margin-top: 15px;">  Show Info</div>
         </div>
 
 

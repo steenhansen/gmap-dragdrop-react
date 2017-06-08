@@ -52,12 +52,9 @@ const IE_DRAG_CSS_CLASS_NAME = 'set-drag-image-ie--dragging-'
 const IE_DRAG_STYLE_ID_NAME = 'ie_drag_style__id_'
 const IE_DRAG_DIV_ID_NAME = 'ie_drag_div__id_'
 
-
-
 const USE_SVG_ID = 'use_svg__id_'
 const USE_SYMBOL_ID = 'svg_path_symbol__id_'
 const DRAG_CANVAS_ID = 'drag_canvas__id_'
-
 
 const INSIDE_TO_INSIDE_MOVE = 'INSIDE_TO_INSIDE_MOVE'
 
@@ -136,9 +133,9 @@ class GmapDragDrop extends Component {
       }
       newImg.src = url
       newImg.id = '_ie_pre_load_drag_image'
-      newImg.style.top='-9999px'
-      newImg.style.left='-9999px'
-      newImg.style.position='absolute'
+      newImg.style.top = '-9999px'
+      newImg.style.left = '-9999px'
+      newImg.style.position = 'absolute'
       document.body.appendChild(newImg)
     }
   }
@@ -217,29 +214,49 @@ class GmapDragDrop extends Component {
     }
   }
 
+  _checkLatLng(marker_data, dropped_at_lat_lng) {
+    if (!Array.isArray(marker_data)) {
+      marker_data.from_lat = marker_data.lat
+      marker_data.from_lng = marker_data.lng
+      if (marker_data.from_lat === undefined) {
+        throw 'Lat is undefined'
+      }
+      if (marker_data.from_lng === undefined) {
+        throw 'Lng is undefined'
+      }
+    }
+    marker_data.lat = dropped_at_lat_lng.lat
+    marker_data.lng = dropped_at_lat_lng.lng
+  }
+
   _onDropOnMap_react(drop_event) {
     drop_event.preventDefault()
     const text_data = drop_event.dataTransfer.getData("text")
     if (text_data) {
       let dropped_at_lat_lng = this._latLngDrop(drop_event)
       const trim_data = text_data.trim()
-      let marker_data = JSON.parse(trim_data)
-      const location_id = marker_data.location_id
-      marker_data.from_lat = marker_data.lat
-      marker_data.from_lng = marker_data.lng
-      marker_data.lat = dropped_at_lat_lng.lat
-      marker_data.lng = dropped_at_lat_lng.lng
-      if (this.state.map_options.onDragDrop !== undefined) {
-        let event_parameters = this._eventParameters('location_data', marker_data)
-        let extended_event = Object.assign({}, drop_event, event_parameters)
-        marker_data = this.state.map_options.onDragDrop(extended_event)
-      }
-      if (marker_data) {
-        if (marker_data.from_id === this._gmapDragDrop_vars.container_id) {
-          this._insideToInsideDrop(location_id, marker_data)
-        } else {
-          this._outsideToInsideDrop(location_id, marker_data)
+      try {
+        try {
+          var marker_data = JSON.parse(trim_data)
+        } catch (e) {
+          throw e.message + '. "' + trim_data + '"" is not a valid JSON location'
         }
+        const location_id = marker_data.location_id
+        this._checkLatLng(marker_data, dropped_at_lat_lng)
+        if (this.state.map_options.onDragDrop !== undefined) {
+          let event_parameters = this._eventParameters('location_data', marker_data)
+          let extended_event = Object.assign({}, drop_event, event_parameters)
+          marker_data = this.state.map_options.onDragDrop(extended_event)
+        }
+        if (marker_data) {
+          if (marker_data.from_id === this._gmapDragDrop_vars.container_id) {
+            this._insideToInsideDrop(location_id, marker_data)
+          } else {
+            this._outsideToInsideDrop(location_id, marker_data)
+          }
+        }
+      } catch (e) {
+        console.log(e)
       }
     }
   }
@@ -844,11 +861,7 @@ class GmapDragDrop extends Component {
     const lng_number = Number(lng_value)
     const lat_lng = {lat: lat_number, lng: lng_number}
     if (!this.validLatLng(lat_lng)) {
-      try {
-        throw new Error('Invalid lat/lng =' + lat_number + '/' + lng_number + ' from ' + str_array_obj_funcs)
-      } catch (e) {
-        console.log(e)
-      }
+      throw new Error('Invalid lat/lng =' + lat_number + '/' + lng_number)
     }
     return lat_lng
   }
@@ -1038,7 +1051,7 @@ class GmapDragDrop extends Component {
         this.reboundMap()
       }
     } catch (e) {
-      alert(e)
+      throw (e)
     }
   }
 
@@ -1056,7 +1069,6 @@ class GmapDragDrop extends Component {
     let info_window = this._gmapDragDrop_vars.location_info_windows[location_id]
     if (info_window !== null) {
       info_window.close()
-      // info_window = null
     }
   }
 
@@ -1190,16 +1202,18 @@ class GmapDragDrop extends Component {
   }
 
   locationAdd(changed_lat_lng_obj) {
-    if (changed_lat_lng_obj) {
-      let changed_location = this.addChangeEvent(changed_lat_lng_obj)
-      if (changed_location) {
-        this._placeMarker(changed_location)
-        if (this.state.map_options.change_rebounding) {
-          this.reboundMap()
-        }
-        if (this.state.map_options.onAfterAdd !== undefined) {
-          let event_parameters = this._eventParameters('location_data', changed_location)
-          this.state.map_options.onAfterAdd(event_parameters)
+    if (changed_lat_lng_obj[0] === undefined) {
+      if (changed_lat_lng_obj) {
+        let changed_location = this.addChangeEvent(changed_lat_lng_obj)
+        if (changed_location) {
+          this._placeMarker(changed_location)
+          if (this.state.map_options.change_rebounding) {
+            this.reboundMap()
+          }
+          if (this.state.map_options.onAfterAdd !== undefined) {
+            let event_parameters = this._eventParameters('location_data', changed_location)
+            this.state.map_options.onAfterAdd(event_parameters)
+          }
         }
       }
     }
@@ -1236,7 +1250,7 @@ GmapDragDrop.propTypes = {
   , onDragStartMarker: PropTypes.func
   , onDragMarker: PropTypes.func
   , onDragEndMarker: PropTypes.func
-  , onDragDrop: PropTypes.func
+  , cf: PropTypes.func
   , onMouseMove: PropTypes.func
   , onDoubleClick: PropTypes.func
   , onRightClick: PropTypes.func

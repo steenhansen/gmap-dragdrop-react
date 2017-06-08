@@ -1,5 +1,9 @@
 'use strict'
 
+
+
+
+
 import GmapDragDrop from '../gmap-dragdrop-react/GmapDragDrop.jsx'
 
 class GmapGroups extends GmapDragDrop {
@@ -57,7 +61,7 @@ class GmapGroups extends GmapDragDrop {
       const pin_color = a_location.pin_color
       this._gmapGroup_vars.group_colors[pin_color] = pin_color
     }
-    this.state.map_options.onDragDrop = this.onDropDropGroup
+    this.state.map_options.onDragDrop = this.onDragDropGroup
     this.state.map_options.onDragEndMarker = this.onDragEndMarkerGroup
     this.state.map_options.onAdd = this.onAddGroup
     this.state.map_options.onRightClickMarker = this.onRightClickMarker
@@ -211,7 +215,7 @@ class GmapGroups extends GmapDragDrop {
     this.drawPolyline(pin_color)
   }
 
-  onDropDropGroup(e) {
+  onDragDropGroup(e) {
     const {location_data} = e.gmap_params
     if (Array.isArray(location_data)) {
       this.draggedInGroup(location_data)
@@ -232,12 +236,12 @@ class GmapGroups extends GmapDragDrop {
   }
 
   dragInModified(lat_lng_obj) {
-    lat_lng_obj.lat = lat_lng_obj.from_lat
-    lat_lng_obj.lng = lat_lng_obj.from_lng
+      lat_lng_obj.lat = lat_lng_obj.from_lat
+      lat_lng_obj.lng = lat_lng_obj.from_lng
     delete lat_lng_obj['from_lat']
     delete lat_lng_obj['from_lng']
     this.locationModifyDirect(lat_lng_obj)
-    this.drawPolyline(lat_lng_obj.pin_color)
+      this.drawPolyline(lat_lng_obj.pin_color)
     return false
   }
 
@@ -276,7 +280,7 @@ class GmapGroups extends GmapDragDrop {
 
   onDragEndMarkerGroup(e) {
     const {from_location} = e.gmap_params
-    if (this._gmapGroup_vars.next_location_id !== 0) {
+      if (this._gmapGroup_vars.next_location_id) {
       this._insideToInsideDrop(this._gmapGroup_vars.next_location_id)
     }
     if (from_location !== undefined) {

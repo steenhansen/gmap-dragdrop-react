@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + {"0":"b9e047a54ab3b5e189f4","1":"ec761f5cdaefddd4c2a0","2":"73c5b4da57038053ed67","3":"bc18edb8456fd9c9d861","4":"2402df913d1dbf005d2f","5":"9244a3c9d0a9116c258e"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + {"0":"b9e047a54ab3b5e189f4","1":"1164381dec56cbe1cd6d","2":"4522dd291bd72f4fb971","3":"bc18edb8456fd9c9d861","4":"2402df913d1dbf005d2f","5":"9244a3c9d0a9116c258e"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -351,6 +351,22 @@ var GmapDragDrop = function (_Component) {
       }
     }
   }, {
+    key: '_checkLatLng',
+    value: function _checkLatLng(marker_data, dropped_at_lat_lng) {
+      if (!Array.isArray(marker_data)) {
+        marker_data.from_lat = marker_data.lat;
+        marker_data.from_lng = marker_data.lng;
+        if (marker_data.from_lat === undefined) {
+          throw 'Lat is undefined';
+        }
+        if (marker_data.from_lng === undefined) {
+          throw 'Lng is undefined';
+        }
+      }
+      marker_data.lat = dropped_at_lat_lng.lat;
+      marker_data.lng = dropped_at_lat_lng.lng;
+    }
+  }, {
     key: '_onDropOnMap_react',
     value: function _onDropOnMap_react(drop_event) {
       drop_event.preventDefault();
@@ -358,23 +374,28 @@ var GmapDragDrop = function (_Component) {
       if (text_data) {
         var dropped_at_lat_lng = this._latLngDrop(drop_event);
         var trim_data = text_data.trim();
-        var marker_data = JSON.parse(trim_data);
-        var location_id = marker_data.location_id;
-        marker_data.from_lat = marker_data.lat;
-        marker_data.from_lng = marker_data.lng;
-        marker_data.lat = dropped_at_lat_lng.lat;
-        marker_data.lng = dropped_at_lat_lng.lng;
-        if (this.state.map_options.onDragDrop !== undefined) {
-          var event_parameters = this._eventParameters('location_data', marker_data);
-          var extended_event = Object.assign({}, drop_event, event_parameters);
-          marker_data = this.state.map_options.onDragDrop(extended_event);
-        }
-        if (marker_data) {
-          if (marker_data.from_id === this._gmapDragDrop_vars.container_id) {
-            this._insideToInsideDrop(location_id, marker_data);
-          } else {
-            this._outsideToInsideDrop(location_id, marker_data);
+        try {
+          try {
+            var marker_data = JSON.parse(trim_data);
+          } catch (e) {
+            throw e.message + '. "' + trim_data + '"" is not a valid JSON location';
           }
+          var location_id = marker_data.location_id;
+          this._checkLatLng(marker_data, dropped_at_lat_lng);
+          if (this.state.map_options.onDragDrop !== undefined) {
+            var event_parameters = this._eventParameters('location_data', marker_data);
+            var extended_event = Object.assign({}, drop_event, event_parameters);
+            marker_data = this.state.map_options.onDragDrop(extended_event);
+          }
+          if (marker_data) {
+            if (marker_data.from_id === this._gmapDragDrop_vars.container_id) {
+              this._insideToInsideDrop(location_id, marker_data);
+            } else {
+              this._outsideToInsideDrop(location_id, marker_data);
+            }
+          }
+        } catch (e) {
+          console.log(e);
         }
       }
     }
@@ -1110,11 +1131,7 @@ var GmapDragDrop = function (_Component) {
       var lng_number = Number(lng_value);
       var lat_lng = { lat: lat_number, lng: lng_number };
       if (!this.validLatLng(lat_lng)) {
-        try {
-          throw new Error('Invalid lat/lng =' + lat_number + '/' + lng_number + ' from ' + str_array_obj_funcs);
-        } catch (e) {
-          console.log(e);
-        }
+        throw new Error('Invalid lat/lng =' + lat_number + '/' + lng_number);
       }
       return lat_lng;
     }
@@ -1325,7 +1342,7 @@ var GmapDragDrop = function (_Component) {
           this.reboundMap();
         }
       } catch (e) {
-        alert(e);
+        throw e;
       }
     }
   }, {
@@ -1344,9 +1361,7 @@ var GmapDragDrop = function (_Component) {
     value: function locationHideInfo(location_id) {
       var info_window = this._gmapDragDrop_vars.location_info_windows[location_id];
       if (info_window !== null) {
-        info_window.close
-        // info_window = null
-        ();
+        info_window.close();
       }
     }
   }, {
@@ -1491,16 +1506,18 @@ var GmapDragDrop = function (_Component) {
   }, {
     key: 'locationAdd',
     value: function locationAdd(changed_lat_lng_obj) {
-      if (changed_lat_lng_obj) {
-        var changed_location = this.addChangeEvent(changed_lat_lng_obj);
-        if (changed_location) {
-          this._placeMarker(changed_location);
-          if (this.state.map_options.change_rebounding) {
-            this.reboundMap();
-          }
-          if (this.state.map_options.onAfterAdd !== undefined) {
-            var event_parameters = this._eventParameters('location_data', changed_location);
-            this.state.map_options.onAfterAdd(event_parameters);
+      if (changed_lat_lng_obj[0] === undefined) {
+        if (changed_lat_lng_obj) {
+          var changed_location = this.addChangeEvent(changed_lat_lng_obj);
+          if (changed_location) {
+            this._placeMarker(changed_location);
+            if (this.state.map_options.change_rebounding) {
+              this.reboundMap();
+            }
+            if (this.state.map_options.onAfterAdd !== undefined) {
+              var event_parameters = this._eventParameters('location_data', changed_location);
+              this.state.map_options.onAfterAdd(event_parameters);
+            }
           }
         }
       }
@@ -1548,7 +1565,7 @@ GmapDragDrop.propTypes = {
   onDragStartMarker: _react.PropTypes.func,
   onDragMarker: _react.PropTypes.func,
   onDragEndMarker: _react.PropTypes.func,
-  onDragDrop: _react.PropTypes.func,
+  cf: _react.PropTypes.func,
   onMouseMove: _react.PropTypes.func,
   onDoubleClick: _react.PropTypes.func,
   onRightClick: _react.PropTypes.func,
@@ -2175,7 +2192,7 @@ var GmapGroups = function (_GmapDragDrop) {
       var pin_color = a_location.pin_color;
       _this._gmapGroup_vars.group_colors[pin_color] = pin_color;
     }
-    _this.state.map_options.onDragDrop = _this.onDropDropGroup;
+    _this.state.map_options.onDragDrop = _this.onDragDropGroup;
     _this.state.map_options.onDragEndMarker = _this.onDragEndMarkerGroup;
     _this.state.map_options.onAdd = _this.onAddGroup;
     _this.state.map_options.onRightClickMarker = _this.onRightClickMarker;
@@ -2355,8 +2372,8 @@ var GmapGroups = function (_GmapDragDrop) {
       this.drawPolyline(pin_color);
     }
   }, {
-    key: 'onDropDropGroup',
-    value: function onDropDropGroup(e) {
+    key: 'onDragDropGroup',
+    value: function onDragDropGroup(e) {
       var location_data = e.gmap_params.location_data;
 
       if (Array.isArray(location_data)) {
@@ -2428,7 +2445,7 @@ var GmapGroups = function (_GmapDragDrop) {
     value: function onDragEndMarkerGroup(e) {
       var from_location = e.gmap_params.from_location;
 
-      if (this._gmapGroup_vars.next_location_id !== 0) {
+      if (this._gmapGroup_vars.next_location_id) {
         this._insideToInsideDrop(this._gmapGroup_vars.next_location_id);
       }
       if (from_location !== undefined) {

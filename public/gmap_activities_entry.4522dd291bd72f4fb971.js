@@ -27,10 +27,10 @@ module.exports = ReactDOM;
 var GmapKms = __webpack_require__(2);
 var GmapSvgIcon = __webpack_require__(1);
 
-var STEVESTON_COLOR = "#00f";
+var STEVESTON_COLOR = "#0101ff";
 var NORTH_SHORE_COLOR = '#148aa5';
-var SASAMAT_COLOR = "#f0f";
-var STANLEY_COLOR = '#f00';
+var SASAMAT_COLOR = "#ff01ff";
+var STANLEY_COLOR = '#ff0101';
 
 var CAN_MOVE_ACTIVITIES = true;
 
@@ -325,33 +325,34 @@ var activity_locations = [NORTH_SHORE_OUTING];
 
 function drawStarShape(from_location, to_locations) {
   var star_pattern = [];
-  star_pattern.push(from_location);
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  if (from_location.lat !== undefined) {
+    star_pattern.push(from_location);
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-  try {
-    for (var _iterator = to_locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var a_to_location = _step.value;
-
-      star_pattern.push(a_to_location);
-      star_pattern.push(from_location);
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
+      for (var _iterator = to_locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var a_to_location = _step.value;
+
+        star_pattern.push(a_to_location);
+        star_pattern.push(from_location);
       }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
     } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
       }
     }
   }
-
   return star_pattern;
 }
 

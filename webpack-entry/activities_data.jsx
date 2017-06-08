@@ -5,10 +5,10 @@
 const GmapKms = require('../gmap-dragdrop-react/GmapKms.jsx')
 const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
 
-const STEVESTON_COLOR = "#00f"
+const STEVESTON_COLOR = "#0101ff"
 const NORTH_SHORE_COLOR = '#148aa5'
-const SASAMAT_COLOR = "#f0f"
-const STANLEY_COLOR = '#f00'
+const SASAMAT_COLOR = "#ff01ff"
+const STANLEY_COLOR = '#ff0101'
 
 const CAN_MOVE_ACTIVITIES = true
 

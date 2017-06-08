@@ -13,10 +13,12 @@ let activity_locations = [NORTH_SHORE_OUTING]
 
 function drawStarShape(from_location, to_locations) {
   let star_pattern = []
-  star_pattern.push(from_location)
-  for (let a_to_location of to_locations) {
-    star_pattern.push(a_to_location)
+  if (from_location.lat !== undefined) {
     star_pattern.push(from_location)
+    for (let a_to_location of to_locations) {
+      star_pattern.push(a_to_location)
+      star_pattern.push(from_location)
+    }
   }
   return star_pattern
 }
@@ -53,7 +55,7 @@ function generateMemberStar(lat_lng_obj) {
   this.drawPolyline(outing_color)
   document.getElementById(input_id).focus()
 }
-
+  
 let lat_start = activity_locations[0][0].group_lat
 let lng_start = activity_locations[0][0].group_lng
 let zoom_start = activity_locations[0][0].group_zoom
