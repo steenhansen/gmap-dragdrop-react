@@ -1,7 +1,21 @@
 var GLOBAL_WEBPACK = GLOBAL_WEBPACK || {}; GLOBAL_WEBPACK["gmap_events_entry"] =
 webpackJsonpGLOBAL_WEBPACK__name_([4],{
 
-/***/ 12:
+/***/ 1:
+/***/ (function(module, exports) {
+
+module.exports = React;
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = ReactDOM;
+
+/***/ }),
+
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9,9 +23,7 @@ webpackJsonpGLOBAL_WEBPACK__name_([4],{
 
 // gmap_events_entry.jsx
 
-var GmapDragDrop = __webpack_require__(0
-//const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
-);var GmapKms = __webpack_require__(2);
+var _gmapDragdropReact = __webpack_require__(0);
 
 var VANCOUVER = { lat: 49.27324752004365, lng: -123.1184429292939, title_text: "Vancouver" };
 var RICHMOND = { lat: 49.16650744083447, lng: -123.11981622030953, title_text: "Richmond" };
@@ -32,20 +44,20 @@ var event_options = {
     var gmap_event = e.gmap_params.gmap_event;
 
     var container_id = gmap_event._gmapDragDrop_vars.container_id;
-    console.log('onReady : in div with id of \'' + container_id + '\' is ready');
+    console.log("onReady : in div with id of '" + container_id + "' is ready");
   },
 
   onCenterChanged: function onCenterChanged(e) {
     var moved_center = e.gmap_params.moved_center;
 
-    console.log('onCenterChanged : at ' + moved_center.lat + ', ' + moved_center.lng);
+    console.log("onCenterChanged : at " + moved_center.lat + ", " + moved_center.lng);
     return true;
   },
 
   onZoomChanged: function onZoomChanged(e) {
     var map_zoom = e.gmap_params.map_zoom;
 
-    console.log('onZoomChanged : with has a new zoom of ' + map_zoom);
+    console.log("onZoomChanged : with has a new zoom of " + map_zoom);
     return true;
   },
 
@@ -58,7 +70,7 @@ var event_options = {
 
       var lat = latLng.lat();
       var lng = latLng.lng();
-      console.log('onMouseMove (of 1/33) : at ' + lat + ',' + lng + '  ' + pageX + ',' + pageY);
+      console.log("onMouseMove (of 1/33) : at " + lat + "," + lng + "  " + pageX + "," + pageY);
     }
   },
 
@@ -69,7 +81,7 @@ var event_options = {
 
     var lat = latLng.lat();
     var lng = latLng.lng();
-    console.log('onDoubleClick : at ' + lat + ',' + lng + '  ' + pixel.x + ',' + pixel.y);
+    console.log("onDoubleClick : at " + lat + "," + lng + "  " + pixel.x + "," + pixel.y);
     gmap_event.locationAdd(latLng);
   },
 
@@ -94,7 +106,7 @@ var event_options = {
 
     var lat = latLng.lat();
     var lng = latLng.lng();
-    console.log('onRightClick : at ' + lat + ',' + lng + '  ' + pixel.x + ',' + pixel.y);
+    console.log("onRightClick : at " + lat + "," + lng + "  " + pixel.x + "," + pixel.y);
   },
 
   onRightClickMarker: function onRightClickMarker(e) {
@@ -152,8 +164,8 @@ var event_options = {
     } else {
       var from_location = { lat: location_data.from_lat, lng: location_data.from_lng };
       var to_location = { lat: location_data.lat, lng: location_data.lng };
-      var km_distance = GmapKms.getKms(from_location, to_location);
-      location_data.title_text = 'onDragDrop ' + km_distance;
+      var km_distance = _gmapDragdropReact.KmsDistance.getKms(from_location, to_location);
+      location_data.title_text = "onDragDrop " + km_distance;
     }
     return location_data;
   }
@@ -161,26 +173,12 @@ var event_options = {
 };
 
 var GOOGLE_MAP_KEY = "AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk";
-ReactDOM.render(React.createElement(GmapDragDrop, {
+ReactDOM.render(React.createElement(_gmapDragdropReact.GmapDragDrop, {
   google_map_key: GOOGLE_MAP_KEY,
   map_locations: events_locations,
   map_options: event_options
 }), document.getElementById('gmap-events-id'));
 
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = React;
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = ReactDOM;
-
 /***/ })
 
-},[12]);
+},[9]);

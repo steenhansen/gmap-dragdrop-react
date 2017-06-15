@@ -1,10 +1,8 @@
 "use strict"
 
 // gmap_events_entry.jsx
-
-const GmapDragDrop = require('../gmap-dragdrop-react/GmapDragDrop.jsx')
-//const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
-const GmapKms = require('../gmap-dragdrop-react/GmapKms.jsx')
+  
+import {GmapDragDrop, KmsDistance} from 'gmap-dragdrop-react'
 
 const VANCOUVER = {lat: 49.27324752004365, lng: -123.1184429292939, title_text: "Vancouver"}
 const RICHMOND = {lat: 49.16650744083447, lng: -123.11981622030953, title_text: "Richmond"}
@@ -122,7 +120,7 @@ const event_options = {
     } else {
       const from_location = {lat: location_data.from_lat, lng: location_data.from_lng}
       const to_location = {lat: location_data.lat, lng: location_data.lng}
-      const km_distance = GmapKms.getKms(from_location, to_location)
+      const km_distance = KmsDistance.getKms(from_location, to_location)
       location_data.title_text = `onDragDrop ${km_distance}`
     }
     return location_data

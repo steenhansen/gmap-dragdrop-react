@@ -37,7 +37,7 @@
         "no-octal": "error",
         "no-with": "error",
         "yoda": "error",
-        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "[iI]gnored" }],
         "no-array-constructor": "error",
         "no-return-assign": "error"
     }

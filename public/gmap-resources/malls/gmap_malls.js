@@ -1,14 +1,14 @@
 'use strict'
 
-// gmap_malls.js
+// gmap_malls.js  
 
 var gmap_malls = GLOBAL_WEBPACK.gmap_malls_entry.gmap_malls
-var GmapSvgIcon = GLOBAL_WEBPACK.gmap_malls_entry.GmapSvgIcon
+var SvgButtons = GLOBAL_WEBPACK.gmap_malls_entry.SvgButtons
 if (window.GmapDragDrop === undefined) {
   window.GmapDragDrop = GLOBAL_WEBPACK.gmap_malls_entry.GmapDragDrop
 }
 
-var mall_map = (function () {
+(function () {
 
   var GUILDFORD = GLOBAL_WEBPACK.gmap_malls_entry.GUILDFORD
   var CENTRAL_CITY = GLOBAL_WEBPACK.gmap_malls_entry.CENTRAL_CITY
@@ -185,21 +185,21 @@ var mall_map = (function () {
       , normal_opacity: NON_HOVER_OPACITY
     }
 
-    GmapSvgIcon.do_delete(delete_malls_options)
-    GmapSvgIcon.upMarkerHover(coquitlam_options)
-    GmapSvgIcon.upMarkerHover(central_city_options)
-    GmapSvgIcon.upMarkerHover(pacific_options)
-    GmapSvgIcon.upMarkerHover(oakridge_options)
-    GmapSvgIcon.upMarkerHover(park_royal_options)
-    GmapSvgIcon.upMarkerHover(capilano_options)
-    GmapSvgIcon.upMarkerHover(royal_city_options)
-    GmapSvgIcon.upMarkerHover(richmond_options)
-    GmapSvgIcon.upMarkerHover(lansdowne_options)
-    GmapSvgIcon.upMarkerHover(aberdeen_options)
-    GmapSvgIcon.upMarkerHover(lougheed_options)
-    GmapSvgIcon.upMarkerHover(brentwood_options)
-    GmapSvgIcon.upMarkerHover(metropolis_options)
-    GmapSvgIcon.upMarkerHover(guildford_options)
+    SvgButtons.do_delete(delete_malls_options)
+    SvgButtons.upMarkerHover(coquitlam_options)
+    SvgButtons.upMarkerHover(central_city_options)
+    SvgButtons.upMarkerHover(pacific_options)
+    SvgButtons.upMarkerHover(oakridge_options)
+    SvgButtons.upMarkerHover(park_royal_options)
+    SvgButtons.upMarkerHover(capilano_options)
+    SvgButtons.upMarkerHover(royal_city_options)
+    SvgButtons.upMarkerHover(richmond_options)
+    SvgButtons.upMarkerHover(lansdowne_options)
+    SvgButtons.upMarkerHover(aberdeen_options)
+    SvgButtons.upMarkerHover(lougheed_options)
+    SvgButtons.upMarkerHover(brentwood_options)
+    SvgButtons.upMarkerHover(metropolis_options)
+    SvgButtons.upMarkerHover(guildford_options)
   }
 
   function mallDrags() {
@@ -226,4 +226,4 @@ var mall_map = (function () {
     dropOnMallDelete: dropOnMallDelete
   }
 
-})();
+})()

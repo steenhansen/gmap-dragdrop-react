@@ -1,100 +1,22 @@
 var GLOBAL_WEBPACK = GLOBAL_WEBPACK || {}; GLOBAL_WEBPACK["gmap_malls_entry"] =
-webpackJsonpGLOBAL_WEBPACK__name_([0],{
-
-/***/ 14:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// gmap_malls_entry.jsx
-
-var GmapDragDrop = __webpack_require__(0);
-var malls_data = __webpack_require__(8);
-var GmapSvgIcon = __webpack_require__(1);
-
-var PACIFIC = malls_data.PACIFIC,
-    OAKRIDGE = malls_data.OAKRIDGE,
-    PARK_ROYAL = malls_data.PARK_ROYAL,
-    CAPILANO = malls_data.CAPILANO,
-    RICHMOND = malls_data.RICHMOND,
-    LANSDOWNE = malls_data.LANSDOWNE,
-    ABERDEEN = malls_data.ABERDEEN,
-    LOUGHEED = malls_data.LOUGHEED,
-    BRENTWOOD = malls_data.BRENTWOOD,
-    METROPOLIS = malls_data.METROPOLIS,
-    GUILDFORD = malls_data.GUILDFORD,
-    CENTRAL_CITY = malls_data.CENTRAL_CITY,
-    COQUITLAM = malls_data.COQUITLAM,
-    ROYAL_CITY = malls_data.ROYAL_CITY;
-
-
-var new_input_id;
-
-var mall_options = {
-  max_zoom: 13,
-  street_view: false,
-  zoom_control: false,
-  map_type_control: false,
-  map_styles: GmapDragDrop.NIGHT_STYLE,
-  onDragDrop: function onDragDrop(e) {
-    var _e$gmap_params = e.gmap_params,
-        location_data = _e$gmap_params.location_data,
-        gmap_event = _e$gmap_params.gmap_event;
-
-    new_input_id = gmap_event._unixTimeId();
-    if (location_data.showing_info_window !== undefined) {
-      location_data.title_text = gmap_event.labelInput(location_data.location_id, 'New Location', 'gmap_malls', new_input_id);
-    }
-    return location_data;
-  },
-  onAfterAdd: function onAfterAdd() {
-    //const {location_data, gmap_event} = e.gmap_params
-    if (document.getElementById(new_input_id) !== null) {
-      document.getElementById(new_input_id).focus();
-    }
-  },
-  onDoubleClick: function onDoubleClick(e) {
-    var gmap_event = e.gmap_params.gmap_event;
-    var latLng = e.latLng;
-
-    gmap_event.locationAdd(latLng);
-  }
-};
-
-var mall_locations = [PACIFIC, OAKRIDGE];
-var GOOGLE_MAP_KEY = "AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk";
-var gmap_malls = ReactDOM.render(React.createElement(GmapDragDrop, {
-  google_map_key: GOOGLE_MAP_KEY,
-  lat_center: 49.275314,
-  lng_center: -122.8547288,
-  map_locations: mall_locations,
-  map_options: mall_options
-}), document.getElementById('gmap-mall-id'));
-
-module.exports = {
-  gmap_malls: gmap_malls, GmapDragDrop: GmapDragDrop, GmapSvgIcon: GmapSvgIcon,
-  GUILDFORD: GUILDFORD, CENTRAL_CITY: CENTRAL_CITY, COQUITLAM: COQUITLAM, LOUGHEED: LOUGHEED, BRENTWOOD: BRENTWOOD, METROPOLIS: METROPOLIS, ROYAL_CITY: ROYAL_CITY,
-  RICHMOND: RICHMOND, LANSDOWNE: LANSDOWNE, ABERDEEN: ABERDEEN, PARK_ROYAL: PARK_ROYAL, CAPILANO: CAPILANO, PACIFIC: PACIFIC, OAKRIDGE: OAKRIDGE
-};
-
-/***/ }),
-
-/***/ 3:
+webpackJsonpGLOBAL_WEBPACK__name_([0],[
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = React;
 
 /***/ }),
-
-/***/ 4:
+/* 2 */
 /***/ (function(module, exports) {
 
 module.exports = ReactDOM;
 
 /***/ }),
-
-/***/ 8:
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -250,6 +172,85 @@ module.exports = {
   LANSDOWNE: LANSDOWNE, ABERDEEN: ABERDEEN, PARK_ROYAL: PARK_ROYAL, CAPILANO: CAPILANO, PACIFIC: PACIFIC, OAKRIDGE: OAKRIDGE
 };
 
-/***/ })
+/***/ }),
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-},[14]);
+"use strict";
+
+
+// gmap_malls_entry.jsx
+
+var _gmapDragdropReact = __webpack_require__(0);
+
+var malls_data = __webpack_require__(6);var PACIFIC = malls_data.PACIFIC,
+    OAKRIDGE = malls_data.OAKRIDGE,
+    PARK_ROYAL = malls_data.PARK_ROYAL,
+    CAPILANO = malls_data.CAPILANO,
+    RICHMOND = malls_data.RICHMOND,
+    LANSDOWNE = malls_data.LANSDOWNE,
+    ABERDEEN = malls_data.ABERDEEN,
+    LOUGHEED = malls_data.LOUGHEED,
+    BRENTWOOD = malls_data.BRENTWOOD,
+    METROPOLIS = malls_data.METROPOLIS,
+    GUILDFORD = malls_data.GUILDFORD,
+    CENTRAL_CITY = malls_data.CENTRAL_CITY,
+    COQUITLAM = malls_data.COQUITLAM,
+    ROYAL_CITY = malls_data.ROYAL_CITY;
+
+
+var new_input_id;
+
+var mall_options = {
+  max_zoom: 13,
+  street_view: false,
+  zoom_control: false,
+  map_type_control: false,
+  map_styles: _gmapDragdropReact.MapStyles.NIGHT_STYLE,
+  onDragDrop: function onDragDrop(e) {
+    var _e$gmap_params = e.gmap_params,
+        location_data = _e$gmap_params.location_data,
+        gmap_event = _e$gmap_params.gmap_event;
+
+    new_input_id = gmap_event._unixTimeId();
+    if (location_data.showing_info_window !== undefined) {
+      location_data.title_text = gmap_event.labelInput(location_data.location_id, 'New Location', 'gmap_malls', new_input_id);
+    }
+    return location_data;
+  },
+  onAfterAdd: function onAfterAdd() {
+    //const {location_data, gmap_event} = e.gmap_params
+    if (document.getElementById(new_input_id) !== null) {
+      document.getElementById(new_input_id).focus();
+    }
+  },
+  onDoubleClick: function onDoubleClick(e) {
+    var gmap_event = e.gmap_params.gmap_event;
+    var latLng = e.latLng;
+
+    gmap_event.locationAdd(latLng);
+  }
+};
+
+var mall_locations = [PACIFIC, OAKRIDGE];
+var GOOGLE_MAP_KEY = "AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk";
+var gmap_malls = ReactDOM.render(React.createElement(_gmapDragdropReact.GmapDragDrop, {
+  google_map_key: GOOGLE_MAP_KEY,
+  lat_center: 49.275314,
+  lng_center: -122.8547288,
+  map_locations: mall_locations,
+  map_options: mall_options
+}), document.getElementById('gmap-mall-id'));
+
+module.exports = {
+  gmap_malls: gmap_malls, GmapDragDrop: _gmapDragdropReact.GmapDragDrop, SvgButtons: _gmapDragdropReact.SvgButtons,
+  GUILDFORD: GUILDFORD, CENTRAL_CITY: CENTRAL_CITY, COQUITLAM: COQUITLAM, LOUGHEED: LOUGHEED, BRENTWOOD: BRENTWOOD, METROPOLIS: METROPOLIS, ROYAL_CITY: ROYAL_CITY,
+  RICHMOND: RICHMOND, LANSDOWNE: LANSDOWNE, ABERDEEN: ABERDEEN, PARK_ROYAL: PARK_ROYAL, CAPILANO: CAPILANO, PACIFIC: PACIFIC, OAKRIDGE: OAKRIDGE
+};
+
+/***/ })
+],[11]);

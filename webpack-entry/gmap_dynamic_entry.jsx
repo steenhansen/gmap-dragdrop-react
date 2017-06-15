@@ -2,7 +2,7 @@
 
 // gmap_dynamic_entry.jsx
 
-const GmapDragDrop = require('../gmap-dragdrop-react/GmapDragDrop.jsx')
+import {GmapDragDrop} from 'gmap-dragdrop-react'
 
 module.exports = {
   GmapDragDrop

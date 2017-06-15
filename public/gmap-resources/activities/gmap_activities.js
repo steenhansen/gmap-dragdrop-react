@@ -3,12 +3,14 @@
 // gmap_activities.js
 
 var gmap_activities = GLOBAL_WEBPACK.gmap_activities_entry.gmap_activities
-var GmapSvgIcon = GLOBAL_WEBPACK.gmap_activities_entry.GmapSvgIcon
+var SvgButtons = GLOBAL_WEBPACK.gmap_activities_entry.SvgButtons
 if (window.GmapDragDrop === undefined) {
   window.GmapDragDrop = GLOBAL_WEBPACK.gmap_activities_entry.GmapDragDrop
 }
 
-var outing_map = (function () {
+
+
+(function () {
 
   var NORTH_SHORE_OUTING = GLOBAL_WEBPACK.gmap_activities_entry.NORTH_SHORE_OUTING
   var STEVESTON_OUTING = GLOBAL_WEBPACK.gmap_activities_entry.STEVESTON_OUTING
@@ -103,7 +105,7 @@ var outing_map = (function () {
     locations_div.innerHTML = number_locations + ' activities'
   }
 
-  function prepareModifyDrag(e) {
+  function prepareModifyDrag(e_ignored) {
     var location_id = getIdVal('location-id')
     var location_outing = getIdVal('location-outing')
     if (location_outing === 'undefined' || location_outing === 'false' || location_outing === '') {
@@ -136,7 +138,7 @@ var outing_map = (function () {
     mod_drag.style.display = 'block'
   }
 
-  function reSizeOutings(e) {
+  function reSizeOutings(e_ignored) {
     var number_locations = gmap_activities.numberLocations()
     if (number_locations>0) {
       gmap_activities.reboundMap()
@@ -266,17 +268,17 @@ var outing_map = (function () {
       , normal_opacity: NON_HOVER_OPACITY_OUTING
     }
 
-    GmapSvgIcon.do_delete(delete_options)
-    GmapSvgIcon.clear_all(clear_all_activities)
-    GmapSvgIcon.resizeHover(resize_activities)
-    GmapSvgIcon.resizeHideInfo(hide_activities)
-    GmapSvgIcon.resizeShowInfo(show_activities)
-    GmapSvgIcon.do_edit(edit_options)
-    GmapSvgIcon.upMarkerHover(drag_edit_options)
-    GmapSvgIcon.orcaHover(steveston_options)
-    GmapSvgIcon.swimHover(sasamat_options)
-    GmapSvgIcon.waterHover(north_shore_options)
-    GmapSvgIcon.parkHover(stanley_options)
+    SvgButtons.do_delete(delete_options)
+    SvgButtons.clear_all(clear_all_activities)
+    SvgButtons.resizeHover(resize_activities)
+    SvgButtons.resizeHideInfo(hide_activities)
+    SvgButtons.resizeShowInfo(show_activities)
+    SvgButtons.do_edit(edit_options)
+    SvgButtons.upMarkerHover(drag_edit_options)
+    SvgButtons.orcaHover(steveston_options)
+    SvgButtons.swimHover(sasamat_options)
+    SvgButtons.waterHover(north_shore_options)
+    SvgButtons.parkHover(stanley_options)
 
   }
 
@@ -297,4 +299,4 @@ var outing_map = (function () {
     , prepareModifyDrag: prepareModifyDrag
   }
 
-})();
+})()

@@ -1,10 +1,9 @@
 'use strict'
 
-
 var jsonPromise = require('jsonfile-promised')
 var fsPromise = require('fs-promise')
 
-const WEBPACK_CHUNKS = 'webpack_js_chunks.json'
+const WEBPACK_CHUNKS = 'web-server/webpack_js_chunks.json'
 
 function chunkhashEntry(bundle_name, req) {
   const host_url = req.headers.host
@@ -27,20 +26,16 @@ function readEntryJsx(gmap_jsx) {
   return file_contents
 }
 
-
-
 function html2Text(a_string_1) {
   const a_string_2 = a_string_1.replace(/</g, '&lt;')
   const a_string_3 = a_string_2.replace(/>/g, '&gt;')
   return a_string_3
 }
 
-
-
-
-
- module.exports ={ chunkhashEntry:chunkhashEntry
-  ,readResourceFile:readResourceFile
-,readEntryJsx:readEntryJsx
-,html2Text:html2Text
-,}
+module.exports = {
+  chunkhashEntry: chunkhashEntry
+  , readResourceFile: readResourceFile
+  , readEntryJsx: readEntryJsx
+  , html2Text: html2Text
+  ,
+}

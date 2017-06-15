@@ -2,10 +2,7 @@
 
 // gmap_hike_entry.jsx
 
-const GmapDragDrop = require('../gmap-dragdrop-react/GmapDragDrop.jsx')
-const GmapGroups = require('../gmap-dragdrop-react/GmapGroups.jsx')
-const GmapKms = require('../gmap-dragdrop-react/GmapKms.jsx')
-const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
+import {GmapDragDrop, GmapGroups, KmsDistance, SvgButtons, MarkerIcons, MapStyles} from 'gmap-dragdrop-react'
 
 const hikes_data = require('./hikes_data.jsx')
 const {BURKE_MOUNTAIN_HIKE, SWAN_HIKE, ALOUETTE_HIKE, BASTION_HIKE}=hikes_data
@@ -33,7 +30,7 @@ function getOutingDistanceLine(lat_lng_obj) {
     for (let location_index in colored_locations) {
       let a_location = colored_locations[location_index]
       if (previous_index === a_location.order_index) {
-        lat_lng_obj.extra_text = GmapKms.getKms(lat_lng_obj, a_location)
+        lat_lng_obj.extra_text = KmsDistance.getKms(lat_lng_obj, a_location)
       } else if (next_index === a_location.order_index) {
         next_location_id = a_location.location_id
       }
@@ -54,8 +51,8 @@ const hike_options = {
   change_rebounding: false
   , init_zoom: zoom_start
   , pin_scale: 0.05
-  , pin_svg: GmapSvgIcon.PIN_SVG_NO_HOLE
-  , map_styles: GmapDragDrop.RETRO_STYLE
+  , pin_svg: MarkerIcons.PIN_SVG_NO_HOLE
+  , map_styles: MapStyles.BLUE_WATER
   , lat_center: lat_start
   , lng_center: lng_start
   , sub_type: 'snake_line'
@@ -72,6 +69,6 @@ gmap_hikes.getOutingDistance = getOutingDistanceLine
 gmap_hikes.generateMember = generateMemberLine
 
 module.exports = {
-  gmap_hikes, GmapDragDrop, GmapSvgIcon,
+  gmap_hikes, GmapDragDrop, SvgButtons,
   BURKE_MOUNTAIN_HIKE, ALOUETTE_HIKE, SWAN_HIKE, BASTION_HIKE
 }

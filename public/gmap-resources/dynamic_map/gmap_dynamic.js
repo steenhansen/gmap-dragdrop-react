@@ -29,7 +29,7 @@ function createMapA() {
     , map_locations: the_locations
     , map_options: {map_type: 'terrain'}
   }
-  dynamic_gmap_a = GmapDragDrop.browserFactory('gmap-dynamic-id-A', dynamic_properties)
+  dynamic_gmap_a = window.GmapDragDrop.browserFactory('gmap-dynamic-id-A', dynamic_properties)
   document.getElementById('create_a').disabled=true
   document.getElementById('destroy_a').disabled=false
 }
@@ -39,8 +39,6 @@ function destroyMapA() {
   GmapDragDrop.browserDestroy(dynamic_gmap_a)
   document.getElementById('create_a').disabled=false
   document.getElementById('destroy_a').disabled=true
-
-
 }
 
 function createMapB() {
@@ -64,7 +62,7 @@ function createMapB() {
     , map_locations: the_locations
     , map_options: {map_type: 'hybrid'}
   }
-  dynamic_gmap_b = GmapDragDrop.browserFactory('gmap-dynamic-id-B', dynamic_properties)
+  dynamic_gmap_b = window.GmapDragDrop.browserFactory('gmap-dynamic-id-B', dynamic_properties)
   document.getElementById('create_b').disabled=true
   document.getElementById('destroy_b').disabled=false
 }
@@ -74,6 +72,12 @@ function destroyMapB() {
   GmapDragDrop.browserDestroy(dynamic_gmap_b)
   document.getElementById('create_b').disabled=false
   document.getElementById('destroy_b').disabled=true
+}
+
+
+if ('not used, but will' === 'stop eslint error message'){
+  destroyMapB()
+  destroyMapA()
 }
 
 createMapA()

@@ -1,24 +1,16 @@
 "use strict"
 
-
-// demo-server
-
-
-
-
-
 var express = require('express')
 var bodyParser = require('body-parser')
 var compression = require('compression')
-const LOCAL_PORT = 5000
-
+const LOCAL_PORT = 5000;
 
 function logExpressErrors(e, req, res, next) {
   global.Method_logger.chronicle('error', 'express-error', module.filename, ' e.stack', e.stack)
   next(e)
 }
 
-function expressErrorHandler(e, req, res, _next) {
+function expressErrorHandler(e, req, res, next_ignored) {
   res.status(500)
   res.send('SERVER ERROR')
 }
@@ -31,7 +23,7 @@ let web_server = function (public_static_files, resource_folder, localhost_port)
   app.use(bodyParser.json())
   app.use(logExpressErrors)
   app.use(expressErrorHandler)
-  let gmaps_pages= require('./gmaps-pages.js')(public_static_files)
+  let gmaps_pages = require('./gmaps-pages.js')(public_static_files)
 
   app.get('/simple', function (req, res) {
     gmaps_pages.gmapSimple(req, res)
@@ -51,7 +43,6 @@ let web_server = function (public_static_files, resource_folder, localhost_port)
 
   app.get('/hikes', function (req, res) {
     gmaps_pages.gmapHikes(req, res)
-
   })
 
   app.get('/malls', function (req, res) {
@@ -61,8 +52,6 @@ let web_server = function (public_static_files, resource_folder, localhost_port)
   app.get('/events', function (req, res) {
     gmaps_pages.gmapEvents(req, res)
   })
-
-
 
   app.get('*', function (req, res) {
     res.redirect('/maps')
@@ -78,7 +67,7 @@ let web_server = function (public_static_files, resource_folder, localhost_port)
 
 }
 
-console.log(`http://localhost:${LOCAL_PORT}`)
+console.log(`  Started web server on - http://localhost:${LOCAL_PORT}`)
 web_server('public', 'gmap-resources', LOCAL_PORT)
 
 

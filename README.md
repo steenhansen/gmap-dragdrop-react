@@ -1,25 +1,31 @@
 
+INSTALLING:
+    Install modules:
+        npm install
 
+    Compile gmap-dragdrop-react component:
+        node component-compile-once
 
+    Bundle web page JavaScript:
+        node script-bundle-once
 
-Install modules:
-    npm install
-	
-	
-Transpile:
-    webpack --progress --colors --watch
+    Start web server:
+        node start-webserver
 
-Start server:
-    supervisor -i node_modules gmap-dragdrop-react-server.js
+    Local url:
+        http://localhost:5000/maps
 
-Local url:
-    http://localhost:5000/
+DEVELOPING:
+    Compile gmap-dragdrop-react component continuously:
+        node component-compile-repeat
 
-linting
-   eslint gmap-dragdrop-react-server.js, gmap-dragdrop-react/*, public/gmap-resources/*, webpack-entry/*
-        npm i -g eslint
-        npm i -g eslint-plugin-react
-        npm i -g babel-eslint
+    Bundle web page JavaScript continuously:
+        node script-bundle-repeat
 
+    Lint gmap-dragdrop-react component continuously:
+        gulp component-lint-repeat
+
+    Lint web page JavaScript continuously:
+        gulp web-lint-repeat
 
 

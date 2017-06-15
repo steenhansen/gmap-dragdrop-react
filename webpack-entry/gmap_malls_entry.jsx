@@ -2,9 +2,9 @@
 
 // gmap_malls_entry.jsx
 
-const GmapDragDrop = require('../gmap-dragdrop-react/GmapDragDrop.jsx')
+import {GmapDragDrop, SvgButtons, MapStyles} from 'gmap-dragdrop-react'
+
 const malls_data = require('./malls_data.jsx')
-const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
 
 const {
         PACIFIC, OAKRIDGE, PARK_ROYAL, CAPILANO, RICHMOND, LANSDOWNE, ABERDEEN, LOUGHEED
@@ -18,7 +18,7 @@ const mall_options = {
   , street_view: false
   , zoom_control: false
   , map_type_control: false
-  , map_styles: GmapDragDrop.NIGHT_STYLE
+  , map_styles: MapStyles.NIGHT_STYLE
   , onDragDrop: (e)=> {
     const {location_data, gmap_event} = e.gmap_params
     new_input_id = gmap_event._unixTimeId()
@@ -51,7 +51,7 @@ let gmap_malls = ReactDOM.render(<GmapDragDrop
 />, document.getElementById('gmap-mall-id'))
 
 module.exports = {
-  gmap_malls, GmapDragDrop, GmapSvgIcon
+  gmap_malls, GmapDragDrop, SvgButtons
   , GUILDFORD, CENTRAL_CITY, COQUITLAM, LOUGHEED, BRENTWOOD, METROPOLIS, ROYAL_CITY
   , RICHMOND, LANSDOWNE, ABERDEEN, PARK_ROYAL, CAPILANO, PACIFIC, OAKRIDGE
 }

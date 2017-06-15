@@ -17,9 +17,10 @@ button{
 pre{
   background-color:#ddd
 }
- 
+
+/* hide info windows 'X' close icon in upper right */
 div.gm-style-iw + div{
-	/*  display: none; */
+	/*  display: none;         */
 	 
 	
 }

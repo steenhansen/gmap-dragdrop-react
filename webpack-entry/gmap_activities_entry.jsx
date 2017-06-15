@@ -2,11 +2,9 @@
 
 // gmap_activities_entry.jsx
 
-const GmapDragDrop = require('../gmap-dragdrop-react/GmapDragDrop.jsx')
-const GmapGroups = require('../gmap-dragdrop-react/GmapGroups.jsx')
-const GmapKms = require('../gmap-dragdrop-react/GmapKms.jsx')
+import {GmapDragDrop, GmapGroups, KmsDistance, SvgButtons, MarkerIcons, MapStyles} from 'gmap-dragdrop-react'
+
 const activities_data = require('./activities_data.jsx')
-const GmapSvgIcon = require('../gmap-dragdrop-react/GmapSvgIcon.jsx')
 
 const {NORTH_SHORE_OUTING, SASAMAT_OUTING, STEVESTON_OUTING, STANLEY_PARK_OUTING}=activities_data
 let activity_locations = [NORTH_SHORE_OUTING]
@@ -35,7 +33,7 @@ function getOutingDistanceStar(lat_lng_obj) {
       break
     }
   }
-  lat_lng_obj.extra_text = GmapKms.getKms(lat_lng_obj, a_location)
+  lat_lng_obj.extra_text = KmsDistance.getKms(lat_lng_obj, a_location)
   return 0            // DO_NOT_PROCESS_NEXT_ITEM_IN_GROUP
 }
 
@@ -55,7 +53,7 @@ function generateMemberStar(lat_lng_obj) {
   this.drawPolyline(outing_color)
   document.getElementById(input_id).focus()
 }
-  
+
 let lat_start = activity_locations[0][0].group_lat
 let lng_start = activity_locations[0][0].group_lng
 let zoom_start = activity_locations[0][0].group_zoom
@@ -66,9 +64,9 @@ const activity_options = {
   , pin_scale: 0.05
   , lat_center: lat_start
   , lng_center: lng_start
-  , pin_svg: GmapSvgIcon.PIN_SVG_NO_HOLE
+  , pin_svg: MarkerIcons.PIN_SVG_NO_HOLE
   , sub_type: 'star_lines'
-  , map_styles: GmapDragDrop.RETRO_STYLE
+  , map_styles: MapStyles.RETRO_STYLE
 }
 
 const GOOGLE_MAP_KEY = "AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk"
@@ -82,9 +80,7 @@ gmap_activities.drawShape = drawStarShape
 gmap_activities.getOutingDistance = getOutingDistanceStar
 gmap_activities.generateMember = generateMemberStar
 
-/////////////////////////////////////////////////////////
-
 module.exports = {
-  gmap_activities, GmapDragDrop, GmapSvgIcon,
+  gmap_activities, GmapDragDrop, SvgButtons,
   NORTH_SHORE_OUTING, SASAMAT_OUTING, STEVESTON_OUTING, STANLEY_PARK_OUTING
 }

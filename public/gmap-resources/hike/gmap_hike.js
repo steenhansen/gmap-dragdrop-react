@@ -2,13 +2,15 @@
 
 // gmap_hike.js
 
+var gmap_hikes = GLOBAL_WEBPACK.gmap_hike_entry.gmap_hikes
+var SvgButtons = GLOBAL_WEBPACK.gmap_hike_entry.SvgButtons
 if (window.GmapDragDrop === undefined) {
   window.GmapDragDrop = GLOBAL_WEBPACK.gmap_hike_entry.GmapDragDrop
 }
-var gmap_hikes = GLOBAL_WEBPACK.gmap_hike_entry.gmap_hikes
-var GmapSvgIcon = GLOBAL_WEBPACK.gmap_hike_entry.GmapSvgIcon
 
-var hiking_map = (function () {
+
+(function () {
+
   var BURKE_MOUNTAIN_HIKES = GLOBAL_WEBPACK.gmap_hike_entry.BURKE_MOUNTAIN_HIKE
   var ALOUETTE_HIKE = GLOBAL_WEBPACK.gmap_hike_entry.ALOUETTE_HIKE
   var SWAN_HIKE = GLOBAL_WEBPACK.gmap_hike_entry.SWAN_HIKE
@@ -27,7 +29,7 @@ var hiking_map = (function () {
     locations_div.innerHTML = number_locations + ' activities'
   }
 
-  function reSizeHikes(e) {
+  function reSizeHikes(e_ignored) {
     var number_locations = gmap_hikes.numberLocations()
     if (number_locations > 0) {
       gmap_hikes.reboundMap()
@@ -88,10 +90,10 @@ var hiking_map = (function () {
       , minor_hover: '#0f0'
       , normal_opacity: NON_HOVER_OPACITY_HIKE
     }
-    GmapSvgIcon.resizeHover(resize_options)
-    GmapSvgIcon.clear_all(clear_all_options)
-    GmapSvgIcon.resizeShowInfo(show_options)
-    GmapSvgIcon.resizeHideInfo(hide_options)
+    SvgButtons.resizeHover(resize_options)
+    SvgButtons.clear_all(clear_all_options)
+    SvgButtons.resizeShowInfo(show_options)
+    SvgButtons.resizeHideInfo(hide_options)
   }
 
   function BurkHike() {
@@ -103,7 +105,7 @@ var hiking_map = (function () {
       , minor_hover: BURKE_MOUNTAIN_HIKES[0].hover_color
       , normal_opacity: NON_HOVER_OPACITY_HIKE
     }
-    GmapSvgIcon.treeHover(burke_hike_options)
+    SvgButtons.treeHover(burke_hike_options)
     var burke_elem = document.getElementById('drag_burke')
     burke_elem.ondragstart = gmap_hikes.startDragFromOutside(BURKE_MOUNTAIN_HIKES)
   }
@@ -117,7 +119,7 @@ var hiking_map = (function () {
       , minor_hover: ALOUETTE_HIKE[0].hover_color
       , normal_opacity: NON_HOVER_OPACITY_HIKE
     }
-    GmapSvgIcon.treeHover(alloutte_hike_options)
+    SvgButtons.treeHover(alloutte_hike_options)
     var alloutte_elem = document.getElementById('drag_alloutte')
     alloutte_elem.ondragstart = gmap_hikes.startDragFromOutside(ALOUETTE_HIKE)
   }
@@ -131,7 +133,7 @@ var hiking_map = (function () {
       , minor_hover: SWAN_HIKE[0].hover_color
       , normal_opacity: NON_HOVER_OPACITY_HIKE
     }
-    GmapSvgIcon.treeHover(swan_hike_options)
+    SvgButtons.treeHover(swan_hike_options)
     var swan_elem = document.getElementById('drag_swan')
     swan_elem.ondragstart = gmap_hikes.startDragFromOutside(SWAN_HIKE)
   }
@@ -145,7 +147,7 @@ var hiking_map = (function () {
       , minor_hover: BASTION_HIKE[0].hover_color
       , normal_opacity: NON_HOVER_OPACITY_HIKE
     }
-    GmapSvgIcon.treeHover(bastion_hike_options)
+    SvgButtons.treeHover(bastion_hike_options)
     var bastion_elem = document.getElementById('drag_bastion')
     bastion_elem.ondragstart = gmap_hikes.startDragFromOutside(BASTION_HIKE)
   }
@@ -164,4 +166,4 @@ var hiking_map = (function () {
 
   }
 
-})();
+})()
