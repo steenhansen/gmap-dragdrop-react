@@ -6,6 +6,3 @@ require('./node_modules/gmap-dragdrop-react/gulp-component-jsx.js')
 gulp.start('component-jsx-repeat');
 
 
-// commons   29207...
-
-// commons == f7d5f4   386

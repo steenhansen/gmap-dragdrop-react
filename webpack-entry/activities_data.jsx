@@ -16,7 +16,7 @@ const STANLEY_PARK = {
   , lat: 49.3006
   , lng: -123.125
   , pin_color: STANLEY_COLOR
-  , title_text: 'Stanley Park'
+  , title_text: 'Visit Stanley Park'
   , group_type: true
   , title_style: `color: ${STANLEY_COLOR}; font-size: 16px; font-weight:bold; `
   , marker_svg: MarkerIcons.PARK_PATH
@@ -225,7 +225,7 @@ const SASAMAT = {
   , marker_svg: MarkerIcons.CAR_PARK
   , can_move: CAN_MOVE_ACTIVITIES
   , title_style: `color: ${SASAMAT_COLOR}; font-size: 16px; font-weight:bold; `
-  , title_text: `<a href='${VAN_TRAILS_SASAMAT}' target='_blank'>Sasamat Lake</a>`
+  , title_text: `Visit <a href='${VAN_TRAILS_SASAMAT}' target='_blank'>Sasamat Lake</a>`
   , group_type: true
   , group_lat: 49.322732829467164
   , group_lng: -122.88177324679653

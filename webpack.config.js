@@ -8,9 +8,10 @@ var AssetsPlugin = require('assets-webpack-plugin')
 var assetsPluginInstance = new AssetsPlugin({filename: 'web-server/webpack_js_chunks.json'})
 const WatchTimePlugin = require('webpack-watch-time-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
+const CompressionPlugin = require("compression-webpack-plugin");
+const BrotliPlugin = require('brotli-webpack-plugin');
 
 new webpack.WatchIgnorePlugin(__dirname, './node_modules/')
-
 module.exports = {
   context: path.resolve(__dirname, './')
   , module: {
@@ -40,8 +41,22 @@ module.exports = {
     , 'react-dom': 'ReactDOM'
     , 'react-dom/server': 'ReactDOMServer'
   }
-  , plugins: [assetsPluginInstance
-    , WatchTimePlugin
+  , plugins: [
+   assetsPluginInstance
+   , WatchTimePlugin
+   , new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+    , new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
     , new webpack.optimize.CommonsChunkPlugin({
       name: 'commons'
       , filename: "[name].[chunkhash].js"
@@ -50,7 +65,8 @@ module.exports = {
     })
     , new WebpackCleanupPlugin({
       exclude: ["*.css", "*.cur", "canvasPolyfill.js", "gmap-resources/**/*", "images/**/*"]
-    })]
+    })
+  ]
 }
 
 
