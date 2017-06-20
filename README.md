@@ -7,9 +7,9 @@ Drag&amp;drop location markers on&amp;off Google Maps with this React component,
 
  ![visual explanation](https://gddr.herokuapp.com/images/gddr_explain.png)
 
-Live [gmap-dragdrop-react examples]([https://gddr.herokuapp.com/maps]).
+Live [gmap-dragdrop-react examples](https://gddr.herokuapp.com/maps).
 
-Full [webserver with examples]([https://github.com/steenhansen/gmap-dragdrop-react]) on GitHub.
+Full [webserver with examples](https://github.com/steenhansen/gmap-dragdrop-react) on GitHub.
 
 ## Install
 
@@ -413,17 +413,17 @@ Minimum map zoom.
 	}} 
 	
 ## GmapGroups
-- [Drag from center of hub to create a new spoke]([https://gddr.herokuapp.com/activities]).
-- [Static hiking trails with linked markers]([https://gddr.herokuapp.com/hikes])
+- [Drag from center of hub to create a new spoke](https://gddr.herokuapp.com/activities).
+- [Static hiking trails with linked markers](https://gddr.herokuapp.com/hikes)
 
 ## Related
 
-- [setDragImage-IE]([https://github.com/MihaiValentin/setDragImage-IE](https://github.com/MihaiValentin/setDragImage-IE)) - setDragImage method support for HTML5 Drag &amp; Drop in Internet Explorer 10+
+- [setDragImage-IE](https://github.com/MihaiValentin/setDragImage-IE) - setDragImage method support for HTML5 Drag &amp; Drop in Internet Explorer 10+
 
 ## Created by
 
-[Steen Hansen]([https://github.com/steenhansen](https://github.com/steenhansen))
+[Steen Hansen][https://github.com/steenhansen](https://github.com/steenhansen)
 
 ## License
 
-MIT © [Steen Hansen][https://www.jerkersearcher.com/]([https://www.jerkersearcher.com])
+MIT © [Steen Hansen][https://www.jerkersearcher.com/](https://www.jerkersearcher.com)
