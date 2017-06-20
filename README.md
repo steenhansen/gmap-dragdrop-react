@@ -5,6 +5,7 @@
 
 Drag&amp;drop location markers on&amp;off Google Maps with this React component, not just [`draggable markers`](https://developers.google.com/maps/documentation/javascript/markers#draggable). Internet Explorer has degraded performance but still works thanks to [`Mihai Valentin`](https://github.com/MihaiValentin/setDragImage-IE).
 
+ ![visual explanation](https://gddr.herokuapp.com/images/gddr_explain.png)
 
 Live [gmap-dragdrop-react examples]([https://gddr.herokuapp.com/maps]).
 
@@ -398,8 +399,8 @@ Minimum map zoom.
 	
 	map_options={ onDragEndMarker: (e)=>{
     		const {location_data, gmap_event} = e.gmap_params
-    		console.log('onDragDrop : with this data', gmap_event._object_type)
- 		console.dir(location_data)
+    		console.log('onDragDrop : with this data', gmap_event._object_type)  
+            console.dir(location_data)   
     		if (location_data.from_lat === undefined) {
       			location_data.title_text = 'onDragDrop 0km'
     		} else {
@@ -425,4 +426,4 @@ Minimum map zoom.
 
 ## License
 
-MIT © [Steen Hansen]([https://www.jerkersearcher.com/]([https://www.jerkersearcher.com])
+MIT © [Steen Hansen][https://www.jerkersearcher.com/]([https://www.jerkersearcher.com])
