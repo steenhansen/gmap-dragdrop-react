@@ -1,11 +1,11 @@
 
 
-#Google Maps Drag and Drop with React Component
+# Google Maps Drag and Drop with React Component
 
 
 Drag&amp;drop location markers on&amp;off Google Maps with this React component, not just [`draggable markers`](https://developers.google.com/maps/documentation/javascript/markers#draggable). Internet Explorer has degraded performance but still works thanks to [`Mihai Valentin`](https://github.com/MihaiValentin/setDragImage-IE).
 
- ![visual explanation](https://gddr.herokuapp.com/images/gddr_explain.png)
+ ![visual explanation](https://nyc3.digitaloceanspaces.com/steen/gddr_explain.png)
 
 Live [gmap-dragdrop-react examples](https://gddr.herokuapp.com/maps).
 
