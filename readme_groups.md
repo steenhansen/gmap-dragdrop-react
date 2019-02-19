@@ -5,8 +5,7 @@
 
 Displays groups of locations, in a star or line pattern. New locations are created when the central star pattern's icon is dragged. Distances in kms can be automatically displayed.
 
- ![visual explanation](https://nyc3.digitaloceanspaces.com/steen/group_explain.png)
-
+![visual explanation](https://github.com/steenhansen/gmap-dragdrop-react/blob/master/group_explain.png)
 ## Install
 
 Child class of GmapDragDrop.
