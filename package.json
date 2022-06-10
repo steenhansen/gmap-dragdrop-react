@@ -40,12 +40,7 @@
   },
   "_npmVersion": "3.10.10",
   "dependencies": {
-    "del": "^6.1.1",
     "gulp": "^4.0.2",
-    "gulp-component": "^0.1.8",
-    "gulp-extname": "^0.2.2",
-    "gulp-hub": "^4.2.0",
-    "gulp-util": "^3.0.8",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-class": "^3.2.2",
