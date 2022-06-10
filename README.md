@@ -23,7 +23,7 @@ $ gulp
     const CYPRESS = {lat: 49.396, lng: -123.204, title_text: "Cypress Mountain"}
     const GROUSE = {lat: 49.380, lng: -123.082, title_text: "Grouse Mountain"}
     const SEYMOUR = {lat: 49.367, lng: -122.948, title_text: "Mount Seymour"}
-    const GOOGLE_MAP_KEY = "AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk"
+    const GOOGLE_MAP_KEY = "abcdefgh**_Google_Map_API_Key_**ijelmen"
 
     ReactDOM.render(<GmapDragDrop
     	google_map_key={GOOGLE_MAP_KEY}
@@ -69,7 +69,7 @@ Type: `function`
 
     	import {GmapDragDrop} from 'gmap-dragdrop-react'
     	let gmap_drag_drop_instance = ReactDOM.render(<GmapDragDrop
-    			google_map_key ={"AIzaSyCE3HSVtJ6yOEkHiBpyoR_iU00gqYgTkfk"}
+    			google_map_key ={"abcdefgh**_Google_Map_API_Key_**ijelmen"}
     			map_locations={ [ {lat: 12.34, lng: 12.34} ] }
     		/>, document.getElementById('gmap-container-id'))
     	let number_locations = gmap_drag_drop_instance.numberLocations()
@@ -89,6 +89,10 @@ Type: `function`
 ![For developers only](for_dev_only.png)
 
 Get a Google Maps API key at [https://developers.google.com/maps/documentation/javascript/get-api-key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+## Restrict API Key for Production
+
+![API restrictions](website-restrictions.png)
 
 ## Related
 
