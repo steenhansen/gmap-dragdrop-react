@@ -1,3 +1,5 @@
+<a name="fast-start"></a>
+
 # Google Maps Drag and Drop with React Component
 
 Drag&amp;drop location markers on&amp;off Google Maps with this React component, not just [`draggable markers`](https://developers.google.com/maps/documentation/javascript/markers#draggable). Internet Explorer has degraded performance but still works thanks to [`Mihai Valentin`](https://github.com/MihaiValentin/setDragImage-IE).
