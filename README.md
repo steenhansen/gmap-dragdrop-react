@@ -6,7 +6,7 @@ Drag&amp;drop location markers on&amp;off Google Maps with this React component,
 
 ![visual explanation](gddr_explain.png)
 
-Live [gmap-dragdrop-react examples](https://gddr.herokuapp.com/maps).
+Live [gmap-dragdrop-react examples](https://gmap-dragdrop-examples.onrender.com/maps).
 
 Full [webserver on GitHub with examples](https://github.com/steenhansen/gmap-dragdrop-examples).
 
