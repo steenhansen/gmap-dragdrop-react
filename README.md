@@ -1,4 +1,4 @@
-<a name="fast-start"></a>
+
 
 # Google Maps Drag and Drop with React Component
 
